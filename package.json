@@ -4,7 +4,7 @@
   "description": "cypress test examples",
   "main": "index.js",
   "scripts": {
-    "test:ci": "npx cypress run --spec ./cypress/e2e/regex.cy.js"
+    "test:ci": "npx cypress run --spec ./cypress/e2e/cy_each.cy.js"
   },
   "author": "",
   "license": "ISC",
