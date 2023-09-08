@@ -5,6 +5,8 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    baseUrl: 'https://stage.sunhotels.com/en'
-  }
+    baseUrl: 'https://www.dotwconnect.com'
+  },
+  screenshotOnRunFailure: false,
+  video: false,
 });
