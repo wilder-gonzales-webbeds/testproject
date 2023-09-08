@@ -4,7 +4,7 @@
   "description": "cypress test examples",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:ci": "npx cypress run --spec ./cypress/e2e/regex.cy.js"
   },
   "author": "",
   "license": "ISC",
