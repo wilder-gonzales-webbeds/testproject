@@ -42,5 +42,5 @@ jobs:
           # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           # Test user credentials
-          CYPRESS_SUNHOTELSUSERNAME: ${{ secrets.CYPRESS_SUNHOTELSUSERNAME }}
-          CYPRESS_SUNHOTELSPASSWORD: ${{ secrets.CYPRESS_SUNHOTELSPASSWORD }}
+          CYPRESS_sunhotelsUsername: ${{ secrets.CYPRESS_SUNHOTELSUSERNAME }}
+          CYPRESS_sunhotelsPassword: ${{ secrets.CYPRESS_SUNHOTELSPASSWORD }}
