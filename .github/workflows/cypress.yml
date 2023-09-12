@@ -23,7 +23,7 @@ jobs:
           echo "DOMAIN=$domain" >> $GITHUB_ENV
           echo $DOMAIN
         id: extract_domain
-      - name: Run Cypress tests on $DOMAIN
+      - name: Run Cypress tests on ${{ env.DOMAIN }}
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v6
         with:
