@@ -20,9 +20,8 @@ jobs:
         run: |
           host="${{ github.event.inputs.host }}"
           domain="$(echo $host | sed -e 's|http[s]*://||' -e 's|/.*||')"
-          echo "::set-env name=DOMAIN::$domain"
-        id: extract_domain
-      - name: Run Cypress tests on [${{ steps.extract_domain.outputs.DOMAIN }}]
+          echo "DOMAIN=$domain" >> $GITHUB_ENV
+      - name: Run Cypress tests on [${{ $DOMAIN }}]
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v6
         with:
