@@ -7,7 +7,6 @@ on:
     inputs:
       host:
         description: 'host'
-        #required: true
         default: 'https://www.sunhotels.com/en'
 jobs:
   cypress-run:
@@ -19,10 +18,15 @@ jobs:
       - name: Get environment domain
         run: |
           host="${{ github.event.inputs.host }}"
-          domain="$(echo $host | sed -e 's|http[s]*://||' -e 's|/.*||')"
-          echo "DOMAIN=$domain" >> $GITHUB_ENV
-          echo $DOMAIN
-        id: extract_domain
+          if [ -z "$host" ]; then
+            default_domain="https://example.com"
+            echo "DOMAIN=$default_domain" >> $GITHUB_ENV
+          else
+            # Extract the domain from input host name
+            domain="$(echo $host | sed -e 's|http[s]*://||' -e 's|/.*||')"
+            echo "DOMAIN=$domain" >> $GITHUB_ENV
+          fi
+          echo "$DOMAIN"
       - name: Run Cypress tests on ${{ env.DOMAIN }}
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v6
