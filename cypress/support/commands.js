@@ -25,13 +25,12 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('loginAs', (username, password) => {
-  cy.session([username, password, 'mysession'], () => {
+  cy.session([username, 'mysession'], () => {
     cy.visit('/')
-    cy.get('#LoginUsername').type('test.ds')
-    cy.get('#LoginPassword').type('w2FUHhtSrnLGYauR+')
+    cy.get('#LoginUsername').type(username, { log: false })
+    cy.get('#LoginPassword').type(password, { log: false })
     cy.get('#login-button').click()
     cy.url().should('contain', '/Agent')
     cy.get('.logo-img').should('be.visible')
-
   })
 })
