@@ -1,5 +1,5 @@
 name: Cypress Tests
-run-name: Cypress Tests on [${{ github.event.inputs.host }}]
+run-name: Cypress Tests ${{ github.event.inputs.host }}
 
 on:
   push:
