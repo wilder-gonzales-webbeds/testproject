@@ -1,5 +1,5 @@
-name: Cypress Tests on default
-run-name: Cypress Tests on ${{ github.event.inputs.host }} executed by ${{ github.actor }}
+name: Cypress Tests
+run-name: Cypress Tests [${{ github.event.inputs.host }}🔍]
 
 on:
   push:
