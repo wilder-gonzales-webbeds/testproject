@@ -1,10 +1,10 @@
 name: complete_flow
 
-on:
-  workflow_run:
-    workflows: [start]
-    types:
-      - completed
+# on:
+#   workflow_run:
+#     workflows: [start]
+#     types:
+#       - completed
 
 jobs:
   on-success:

@@ -15,13 +15,14 @@ jobs:
         id: setvariable
         run: |
           echo "MY_VAR=hello" >> $GITHUB_OUTPUT
+          echo $MY_VAR
 
       - name: print env variable
-        run: echo "$MY_VAR"
+        run: echo "${{ steps.setvariable.outputs.MY_VAR }}"
   print:
     runs-on: ubuntu-latest
     needs: setup
     steps:
       - name: print env variable
-        run: echo "${{needs.setup.outputs.myvar}}"
+        run: echo "${{ needs.setup.outputs.myvar }}"
 
