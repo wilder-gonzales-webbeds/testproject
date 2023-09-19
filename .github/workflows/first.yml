@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: set env variable
-        run: |
-          echo "MY_VAR=hello" >> $GITHUB_ENV
-          echo "${{ env.MY_VAR }}"
+        run: echo "MY_VAR=hello" >> $GITHUB_ENV
+      - name: print env variable
+        run: echo "$MY_VAR"
   print:
     runs-on: ubuntu-latest
     steps:
       - name: print env variable
-        run: echo "${{ env.MY_VAR }}"
+        run: echo "$MY_VAR"
 
