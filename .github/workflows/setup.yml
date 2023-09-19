@@ -15,7 +15,6 @@ jobs:
       - name: set env variable
         id: setvariable
         run: echo "MY_VAR=hello" >> $GITHUB_OUTPUT
-        run: echo "$MY_VAR"
 
       - name: print env variable
         run: echo "${{ steps.setvariable.outputs.MY_VAR }}"
