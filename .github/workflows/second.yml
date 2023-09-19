@@ -1,4 +1,4 @@
-name: complete_flow
+# name: complete_flow
 
 # on:
 #   workflow_run:
@@ -6,14 +6,14 @@ name: complete_flow
 #     types:
 #       - completed
 
-jobs:
-  on-success:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    steps:
-      - run: echo "$MY_VAR"
-  on-failure:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    steps:
-      - run: echo 'The triggering workflow failed'
+# jobs:
+#   on-success:
+#     runs-on: ubuntu-latest
+#     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+#     steps:
+#       - run: echo "$MY_VAR"
+#   on-failure:
+#     runs-on: ubuntu-latest
+#     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+#     steps:
+#       - run: echo 'The triggering workflow failed'
