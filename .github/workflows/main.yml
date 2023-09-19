@@ -9,7 +9,7 @@ on:
 jobs:
   setup:
     uses: ./.github/workflows/setup.yml
-    name: "call first yml"
+    name: "setup.yml"
   
   print_vars:
     runs-on: ubuntu-latest
