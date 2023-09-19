@@ -6,11 +6,16 @@ on:
     branches:
       - main
 jobs:
-  main:
+  setup:
     runs-on: ubuntu-latest
-
     steps:
       - name: set env variable
         run: |
           echo "MY_VAR=hello" >> $GITHUB_ENV
-          echo $MY_VAR
+
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print env variable
+        run: echo "${{ env.MY_VAR }}"
+

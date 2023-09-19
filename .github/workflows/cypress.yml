@@ -1,10 +1,10 @@
 name: Cypress Tests
-run-name: Cypress Tests [${{ github.event.inputs.host }}🔍]
+run-name: Cypress Tests [${{ inputs.host }}]
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch:
     inputs:
       host:
