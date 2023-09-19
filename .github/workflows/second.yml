@@ -2,9 +2,10 @@ name: last
 
 on:
   workflow_run:
-    workflows: ["start"]
-      types:
-        - completed
+    workflows: [start]
+    types:
+      - completed
+
 jobs:
   last:
     runs-on: ubuntu-latest
