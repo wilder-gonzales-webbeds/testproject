@@ -7,9 +7,8 @@ on:
 
 jobs:
   call_setup:
-    runs-on: ubuntu-latest
+    uses: ./.github/workflows/setup.yml
     name: "call first yml"
-    uses: wilder-gonzales-webbeds/testproject/.github/workflows/setup.yml@main
   
   test_vars:
     runs-on: ubuntu-latest
