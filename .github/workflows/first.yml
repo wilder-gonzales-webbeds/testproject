@@ -13,4 +13,4 @@ jobs:
       - name: set env variable
         run: |
           echo "MY_VAR=hello" >> $GITHUB_ENV
-          echo "$MY_VAR"
+          echo $MY_VAR
