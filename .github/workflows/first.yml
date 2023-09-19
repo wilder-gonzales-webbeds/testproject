@@ -8,9 +8,11 @@ on:
 jobs:
   setup:
     runs-on: ubuntu-latest
+    outputs:
+      myvar: ${{ steps.setvariable.outputs.MY_VAR }}
     steps:
       - name: set env variable
-        id: setvar
+        id: setvariable
         run: |
           echo "MY_VAR=hello" >> $GITHUB_OUTPUT
 
@@ -21,5 +23,5 @@ jobs:
     needs: setup
     steps:
       - name: print env variable
-        run: echo "${{ needs.setup.steps.setvar.outputs.MY_VAR }}"
+        run: echo "${{needs.setup.outputs.myvar}}"
 
