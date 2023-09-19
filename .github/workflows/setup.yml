@@ -1,10 +1,11 @@
-name: start
-run-name: start_flow
+name: setup
 
 on:
-  push:
-    branches:
-      - main
+  workflow_call:
+    # Map the workflow outputs to job outputs
+    outputs:
+      myvar:
+        value: ${{ jobs.setup.outputs.myvar }}
 jobs:
   setup:
     runs-on: ubuntu-latest
@@ -13,9 +14,8 @@ jobs:
     steps:
       - name: set env variable
         id: setvariable
-        run: |
-          echo "MY_VAR=hello" >> $GITHUB_OUTPUT
-          echo "$MY_VAR"
+        run: echo "MY_VAR=hello" >> $GITHUB_OUTPUT
+        run: echo "$MY_VAR"
 
       - name: print env variable
         run: echo "${{ steps.setvariable.outputs.MY_VAR }}"

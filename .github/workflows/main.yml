@@ -1,0 +1,22 @@
+name: main_flow
+
+on:
+  push:
+    branches:
+      - main
+
+# on:
+#   workflow_run:
+#     workflows: [start]
+#     types:
+#       - completed
+jobs:
+  call_setup:
+    name: "call first yml"
+    uses: wilder-gonzales-webbeds/testproject/.github/workflows/setup.yml@main
+  
+  test_vars:
+    needs: call_setup
+    steps:
+      - name: "print myvar"
+        run: echo [${{ needs.call_setup.outputs.myvar }}]
