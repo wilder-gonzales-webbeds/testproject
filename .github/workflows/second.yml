@@ -1,0 +1,13 @@
+name: last
+
+on:
+  workflow_run:
+    workflows: ["start"]
+      types:
+        - completed
+jobs:
+  last:
+    runs-on: ubuntu-latest
+    steps:
+      name: print env variable
+      run: echo {{ env.$MY_VAR }}

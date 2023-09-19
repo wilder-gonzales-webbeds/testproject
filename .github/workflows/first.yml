@@ -1,0 +1,14 @@
+name: start
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  main:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: set env variable
+        run: |
+          echo "MY_VAR=hello" >> $GITHUB_ENV
