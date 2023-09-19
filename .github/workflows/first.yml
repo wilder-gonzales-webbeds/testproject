@@ -1,4 +1,5 @@
 name: start
+run-name: start_flow
 
 on:
   push:
@@ -12,3 +13,4 @@ jobs:
       - name: set env variable
         run: |
           echo "MY_VAR=hello" >> $GITHUB_ENV
+          echo ${{ env.MY_VAR }}

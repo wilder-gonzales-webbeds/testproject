@@ -1,4 +1,4 @@
-name: last
+name: complete_flow
 
 on:
   workflow_run:
