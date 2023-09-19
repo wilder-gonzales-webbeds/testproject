@@ -1,4 +1,5 @@
-name: main_flow
+name: main
+run-name: main_flow
 
 on:
   push:
@@ -6,13 +7,13 @@ on:
       - main
 
 jobs:
-  call_setup:
+  setup:
     uses: ./.github/workflows/setup.yml
     name: "call first yml"
   
-  test_vars:
+  print_vars:
     runs-on: ubuntu-latest
-    needs: call_setup
+    needs: setup
     steps:
-      - name: "print myvar"
-        run: echo [${{ needs.call_setup.outputs.myvar }}]
+      - name: print variables
+        run: echo [${{ needs.setup.outputs.myvar }}]
