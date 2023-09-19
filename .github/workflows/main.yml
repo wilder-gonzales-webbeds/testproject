@@ -5,17 +5,14 @@ on:
     branches:
       - main
 
-# on:
-#   workflow_run:
-#     workflows: [start]
-#     types:
-#       - completed
 jobs:
   call_setup:
+    runs-on: ubuntu-latest
     name: "call first yml"
     uses: wilder-gonzales-webbeds/testproject/.github/workflows/setup.yml@main
   
   test_vars:
+    runs-on: ubuntu-latest
     needs: call_setup
     steps:
       - name: "print myvar"
