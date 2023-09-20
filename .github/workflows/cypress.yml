@@ -10,6 +10,9 @@ on:
       host:
         description: 'host'
         default: 'www.sunhotels.com/en'
+        options:
+        - opt1
+        - opt2
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
