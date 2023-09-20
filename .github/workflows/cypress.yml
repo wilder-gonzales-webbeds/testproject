@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       host:
+        type: choice
         description: 'host'
         default: 'www.sunhotels.com/en'
         options:
