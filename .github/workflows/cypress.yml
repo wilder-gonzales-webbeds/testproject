@@ -12,18 +12,18 @@ on:
         default: 'www.sunhotels.com/en'
 
   workflow_call:
-    outputs:
-      CYPRESS_sunhotelsUsername:
-        value: ${{ jobs.cypress-run.outputs.CYPRESS_sunhotelsUsername }}
-      CYPRESS_sunhotelsPassword:
-        value: ${{ jobs.cypress-run.outputs.CYPRESS_sunhotelsPassword }}
+    # outputs: # REMOVE
+    #   CYPRESS_sunhotelsUsername:
+    #     value: ${{ jobs.cypress-run.outputs.CYPRESS_sunhotelsUsername }}
+    #   CYPRESS_sunhotelsPassword:
+    #     value: ${{ jobs.cypress-run.outputs.CYPRESS_sunhotelsPassword }}
 
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    outputs:
-      CYPRESS_sunhotelsUsername: ${{ steps.setuser.outputs.CYPRESS_sunhotelsPassword }}
-      CYPRESS_sunhotelsPassword: ${{ steps.setpass.outputs.CYPRESS_sunhotelsPassword }}
+    # outputs:
+    #   CYPRESS_sunhotelsUsername: ${{ steps.setuser.outputs.CYPRESS_sunhotelsPassword }}
+    #   CYPRESS_sunhotelsPassword: ${{ steps.setpass.outputs.CYPRESS_sunhotelsPassword }}
 
     steps:
       - name: Checkout
@@ -38,12 +38,12 @@ jobs:
             echo "BASE_URL=https://$host" >> $GITHUB_ENV
           fi
 
-      - name: export user
-        id: setuser
-        run: echo "CYPRESS_sunhotelsPassword=${{ secrets.CYPRESS_SUNHOTELSUSERNAME }}" >> $GITHUB_OUTPUT
-      - name: export password
-        id: setpass
-        run: echo "CYPRESS_sunhotelsPassword=${{ secrets.CYPRESS_SUNHOTELSPASSWORD }}" >> $GITHUB_OUTPUT
+      # - name: export user
+      #   id: setuser
+      #   run: echo "CYPRESS_sunhotelsPassword=${{ secrets.CYPRESS_SUNHOTELSUSERNAME }}" >> $GITHUB_OUTPUT
+      # - name: export password
+      #   id: setpass
+      #   run: echo "CYPRESS_sunhotelsPassword=${{ secrets.CYPRESS_SUNHOTELSPASSWORD }}" >> $GITHUB_OUTPUT
 
       - name: Run Cypress tests on ${{ env.BASE_URL }} 🧪
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
