@@ -8,12 +8,10 @@ on:
   workflow_dispatch:
     inputs:
       host:
-        type: choice
         description: 'host'
         default: 'www.sunhotels.com/en'
-        options:
-        - opt1
-        - opt2
+  workflow_call:
+
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
@@ -25,12 +23,11 @@ jobs:
         run: |
           host="${{ github.event.inputs.host }}"
           if [ -z "$host" ]; then
-            echo "DOMAIN=${{ github.event.inputs.host.default }}" >> $GITHUB_ENV
+            echo "BASE_URL=https://www.sunhotels.com/en" >> $GITHUB_ENV
           else
-            echo "DOMAIN=$host" >> $GITHUB_ENV
+            echo "BASE_URL=https://$host" >> $GITHUB_ENV
           fi
-          echo "BASE_URL=https://${{ env.DOMAIN }}" >> $GITHUB_ENV
-      - name: Run Cypress tests on ${{ env.DOMAIN }} 🧪 ${{ env.BASE_URL }}
+      - name: Run Cypress tests on ${{ env.BASE_URL }} 🧪
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v6
         with:

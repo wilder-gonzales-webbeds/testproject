@@ -1,5 +1,5 @@
 name: main
-run-name: main_flow
+run-name: main_flow [default]
 
 on:
   push:
@@ -7,13 +7,13 @@ on:
       - main
 
 jobs:
-  setup:
-    uses: ./.github/workflows/setup.yml
-    name: "setup.yml"
+  cypress-run:
+    uses: ./.github/workflows/cypress.yml
+    #name: "setup.yml"
   
-  print_vars:
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - name: print variables
-        run: echo [${{ needs.setup.outputs.myvar }}]
+  # print_vars:
+  #   runs-on: ubuntu-latest
+  #   needs: setup
+  #   steps:
+  #     - name: print variables
+  #       run: echo [${{ needs.setup.outputs.myvar }}]
