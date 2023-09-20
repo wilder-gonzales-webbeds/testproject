@@ -1,5 +1,5 @@
-name: main
-run-name: main_flow [default]
+name: DOTW CI [UI test]
+run-name: DOTW CI [UI test] [main-automation.stage.aws.dotw.com]
 
 on:
   push:
@@ -9,9 +9,10 @@ on:
 jobs:
   pull_request:
     uses: ./.github/workflows/cypress.yml
-    # with:
-    #   build-and-verify: ${{needs.EnvSetup.outputs.build-and-verify}}
     secrets:
+      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       CYPRESS_SUNHOTELSUSERNAME: ${{ secrets.CYPRESS_SUNHOTELSUSERNAME }}
       CYPRESS_SUNHOTELSPASSWORD: ${{ secrets.CYPRESS_SUNHOTELSPASSWORD }}
   
