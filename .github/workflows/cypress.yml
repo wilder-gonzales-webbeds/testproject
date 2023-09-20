@@ -12,7 +12,7 @@ on:
         default: 'www.sunhotels.com/en'
 
   workflow_call:
-    secrets: inherit # pass all secrets
+    # secrets: inherit # pass all secrets
 
 jobs:
   cypress-run:
