@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  cypress-run:
+  pull_request:
     uses: ./.github/workflows/cypress.yml
     #name: "setup.yml"
   
