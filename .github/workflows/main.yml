@@ -12,8 +12,8 @@ jobs:
     # with:
     #   build-and-verify: ${{needs.EnvSetup.outputs.build-and-verify}}
     secrets:
-      CYPRESS_sunhotelsUsername: ${{ secrets.CYPRESS_sunhotelsUsername }}
-      CYPRESS_sunhotelsPassword: ${{ secrets.CYPRESS_SUNHOTELSPASSWORD }}
+      CYPRESS_SUNHOTELSUSERNAME: ${{ secrets.CYPRESS_SUNHOTELSUSERNAME }}
+      CYPRESS_SUNHOTELSPASSWORD: ${{ secrets.CYPRESS_SUNHOTELSPASSWORD }}
   
   # print_vars:
   #   runs-on: ubuntu-latest

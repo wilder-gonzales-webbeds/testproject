@@ -12,11 +12,11 @@ on:
         default: 'www.sunhotels.com/en'
 
   workflow_call:
-    # outputs: # REMOVE
-    #   CYPRESS_sunhotelsUsername:
-    #     value: ${{ jobs.cypress-run.outputs.CYPRESS_sunhotelsUsername }}
-    #   CYPRESS_sunhotelsPassword:
-    #     value: ${{ jobs.cypress-run.outputs.CYPRESS_sunhotelsPassword }}
+    secrets: # REMOVE
+      CYPRESS_SUNHOTELSUSERNAME:
+        # value: ${{ jobs.cypress-run.outputs.CYPRESS_sunhotelsUsername }}
+      CYPRESS_SUNHOTELSPASSWORD:
+        # value: ${{ jobs.cypress-run.outputs.CYPRESS_sunhotelsPassword }}
 
 jobs:
   cypress-run:
