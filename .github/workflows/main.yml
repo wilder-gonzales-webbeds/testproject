@@ -1,5 +1,5 @@
-name: DOTW CI [UI test]
-run-name: DOTW CI [UI test] [main-automation.stage.aws.dotw.com]
+name: main
+run-name: test [default]
 
 on:
   push:
@@ -10,12 +10,6 @@ jobs:
   pull_request:
     uses: ./.github/workflows/cypress.yml
     secrets: inherit
-    # secrets:
-    #   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-    #   CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-    #   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-    #   CYPRESS_SUNHOTELSUSERNAME: ${{ secrets.CYPRESS_SUNHOTELSUSERNAME }}
-    #   CYPRESS_SUNHOTELSPASSWORD: ${{ secrets.CYPRESS_SUNHOTELSPASSWORD }}
   
   # print_vars:
   #   runs-on: ubuntu-latest

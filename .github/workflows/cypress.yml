@@ -1,5 +1,5 @@
-name: DOTW CI [UI test]
-run-name: DOTW CI [UI test] [${{ inputs.host }}]
+name: cypress
+run-name: test [${{ inputs.host }}]
 
 on:
   # push:
@@ -16,22 +16,22 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+    # container: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
 
     steps:
-      - name: Checkout
+      - name: checkout
         uses: actions/checkout@v3
 
-      - name: Get environment domain
+      - name: get host
         run: |
-          host="${{ github.event.inputs.host }}"
+          host="${{ inputs.host }}"
           if [ -z "$host" ]; then
             echo "BASE_URL=https://www.sunhotels.com/en" >> $GITHUB_ENV
           else
             echo "BASE_URL=https://$host" >> $GITHUB_ENV
           fi
 
-      - name: Run Cypress tests on ${{ env.BASE_URL }} 🧪
+      - name: run cypress on ${{ env.BASE_URL }} 🧪
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v6
         with:
