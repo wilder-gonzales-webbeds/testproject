@@ -4,11 +4,11 @@
   "description": "cypress test examples",
   "main": "index.js",
   "scripts": {
-    "test:ci": "npx cypress run --record --spec ./cypress/e2e/extranet.cy.js"
+    "test:ci": "npx cypress run --browser chrome --record --spec ./cypress/e2e/extranet.cy.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.1.0"
+    "cypress": "^12.17.2"
   }
 }
