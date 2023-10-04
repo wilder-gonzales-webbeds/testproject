@@ -21,12 +21,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
-      - name: Download chrome
-        run: |
-          sudo apt-get install unzip
-          wget -O oldchrome.zip https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F972774%2Fchrome-linux.zip?generation=1645151575114705&alt=media
-          unzip oldchrome.zip
 
       - name: Get environment domain
         run: |
