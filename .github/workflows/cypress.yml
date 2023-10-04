@@ -16,7 +16,9 @@ on:
 
 jobs:
   cypress-run:
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, WebBeds, kubernetes, base]
+    container: cypress/browsers:node16.13.2-chrome100-ff98
 
     steps:
       - name: Checkout
