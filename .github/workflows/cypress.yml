@@ -22,13 +22,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
-      - uses: browser-actions/setup-chrome@v1
+      - uses: logikal-io/install-chrome@v1
         with:
-          chrome-version: 100.0.4896.88 
-        id: setup-chrome
-      - run: |
-          echo Installed chromium version: ${{ steps.setup-chrome.outputs.chrome-version }}
-          ${{ steps.setup-chrome.outputs.chrome-path }} --version
+          version: 100
 
       - name: Get environment domain
         run: |
