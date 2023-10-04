@@ -16,13 +16,19 @@ on:
 
 jobs:
   cypress-run:
-    # runs-on: ubuntu-latest
-    runs-on: [self-hosted, Linux, X64, WebBeds, kubernetes, base]
-    container: cypress/browsers:node16.13.2-chrome100-ff98
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 100
+        id: setup-chrome
+      - run: |
+          echo Installed chromium version: ${{ steps.setup-chrome.outputs.chrome-version }}
+          ${{ steps.setup-chrome.outputs.chrome-path }} --version
 
       - name: Get environment domain
         run: |
