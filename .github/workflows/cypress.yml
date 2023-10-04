@@ -49,3 +49,5 @@ jobs:
           # Test user credentials
           CYPRESS_sunhotelsUsername: ${{ secrets.CYPRESS_SUNHOTELSUSERNAME }}
           CYPRESS_sunhotelsPassword: ${{ secrets.CYPRESS_SUNHOTELSPASSWORD }}
+          CYPRESS_extranetUsername: ${{ secrets.CYPRESS_EXTRANETUSERNAME }}
+          CYPRESS_extranetPassword: ${{ secrets.CYPRESS_EXTRANETPASSWORD }}
