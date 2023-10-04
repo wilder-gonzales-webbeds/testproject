@@ -22,9 +22,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
-      - uses: logikal-io/install-chrome@v1
-        with:
-          version: 100
+      - name: Download chrome
+        run: |
+          sudo apt-get install unzip
+          wget -O oldchrome.zip https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F972774%2Fchrome-linux.zip?generation=1645151575114705&alt=media
+          unzip oldchrome.zip
 
       - name: Get environment domain
         run: |
@@ -42,7 +44,7 @@ jobs:
           # Records to Cypress Cloud 
           # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
           record: true
-          command: npm run test:ci
+          command: npx cypress run --browser ./oldchrome/chrome-linux/chrome --record --spec ./cypress/e2e/extranet.cy.js
         env:
           # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
           # in GitHub repo → Settings → Secrets → Actions
