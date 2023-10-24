@@ -51,3 +51,42 @@ jobs:
           CYPRESS_sunhotelsPassword: ${{ secrets.CYPRESS_SUNHOTELSPASSWORD }}
           CYPRESS_extranetUsername: ${{ secrets.CYPRESS_EXTRANETUSERNAME }}
           CYPRESS_extranetPassword: ${{ secrets.CYPRESS_EXTRANETPASSWORD }}
+
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v3
+        with:
+          name: cypress-videos
+          path: cypress/videos
+          if-no-files-found: ignore
+
+      - name: Set release date for apply notification
+        id: get-date
+        if: steps.check-output.outputs.changes == 'true'
+        run: echo "date=$(date +"%D, %H:%I")" >> "$GITHUB_OUTPUT"
+        shell: bash
+
+      - name: Send notification to Teams Stage channel
+        # if: steps.check-output.outputs.changes == 'true'
+        uses: simbo/msteams-message-card-action@v1.4.3
+        with:
+          webhook: ${{ secrets.TEAMS_WEBHOOK }}
+          title: "This is the title"
+          message: <p>a <strong>test automation</strong> action has been run on this environment</p>
+          color: 228b22
+          buttons: |
+            Workflow log ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          sections: |
+            -
+              activity:
+                title: ${{ github.actor }}
+                subtitle: ${{ steps.get-date.outputs.date }} GMT
+                image: https://avatars.githubusercontent.com/u/${{ github.actor_id }}
+              facts:
+                -
+                  name: "Repository:"
+                  value: ${{ github.repository }}
