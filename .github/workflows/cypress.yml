@@ -61,7 +61,7 @@ jobs:
           path: cypress/screenshots
           if-no-files-found: ignore
       - uses: actions/upload-artifact@v3
-      if: failure()
+        if: failure()
         with:
           name: cypress-videos
           path: cypress/videos
