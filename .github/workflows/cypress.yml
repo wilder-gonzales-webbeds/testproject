@@ -66,10 +66,12 @@ jobs:
 
       - name: Set release date for apply notification
         id: get-date
+        if: always()
         run: echo "date=$(date +"%D, %H:%I")" >> "$GITHUB_OUTPUT"
         shell: bash
 
       - name: Send notification to Teams Stage channel
+        if: always()
         # if: steps.check-output.outputs.changes == 'true'
         uses: simbo/msteams-message-card-action@v1.4.3
         with:
