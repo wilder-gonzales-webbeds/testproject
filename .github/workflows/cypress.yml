@@ -33,7 +33,6 @@ jobs:
 
       - name: run cypress on ${{ env.BASE_URL }} 🧪
         id: cytests
-        continue-on-error: true
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v6
         with:
@@ -68,12 +67,12 @@ jobs:
           if-no-files-found: ignore
       
       - name: Set flag on failure
-        if: steps.cytests.outcome == 'failure'
+        if: always() && steps.cytests.outcome == 'failure'
         run: echo "flag=true" >> $GITHUB_ENV
 
       - name: Set notification color
         id: get-color
-        # if: always()
+        if: always()
         run: |
           if [ ${{ env.flag }} ]; then
             echo "card_color=bd2f2f" >> $GITHUB_ENV
@@ -84,18 +83,17 @@ jobs:
 
       - name: Set release date for apply notification
         id: get-date
-        # if: always()
-        run: echo "date=$(date +"%D, %H:%I")" >> "$GITHUB_OUTPUT"
+        if: always()
+        run: echo "date=$(date +"%D %H:%I")" >> "$GITHUB_OUTPUT"
         shell: bash
 
       - name: Send notification to Teams Stage channel
-        # if: always()
-        # if: steps.check-output.outputs.changes == 'true'
+        if: always()
         uses: simbo/msteams-message-card-action@v1.4.3
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK }}
           title: "This is the title"
-          message: <p>a <strong>test automation</strong> action has been run on this environment</p>
+          message: <p>A <strong>test automation</strong> action has been run on this environment</p>
           color: ${{ env.card_color }}
           buttons: |
             Workflow log ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
