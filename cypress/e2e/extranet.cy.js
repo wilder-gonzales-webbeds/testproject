@@ -9,7 +9,7 @@ describe('login', function () {
     cy.get("button[type='submit']").click()
 
     cy.get("#headerProfilePhoto").should('be.visible')
-    expect(false).to.be(true)
+    // expect(false).to.be(true)
   })
 
 })

@@ -74,7 +74,7 @@ jobs:
         if: always()
         run: |
           if [ ${{ env.flag }} == "true" ]; then
-            echo "card_color=7d2727" >> $GITHUB_ENV
+            echo "card_color=bd2f2f" >> $GITHUB_ENV
           else
             echo "card_color=228b22" >> $GITHUB_ENV
           fi
