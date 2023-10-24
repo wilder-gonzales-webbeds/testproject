@@ -32,6 +32,7 @@ jobs:
           fi
 
       - name: run cypress on ${{ env.BASE_URL }} 🧪
+        id: cytests
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v6
         with:
@@ -63,6 +64,21 @@ jobs:
           name: cypress-videos
           path: cypress/videos
           if-no-files-found: ignore
+      
+      - name: Set flag on failure
+        if: steps.cytests.outcome == 'failure'
+        run: echo "flag=true" >> $GITHUB_ENV
+
+      - name: Set notification color
+        id: get-color
+        if: always()
+        run: |
+          if [ ${{ env.flag }} == "true" ]; then
+            echo "card_color=7d2727" >> $GITHUB_ENV
+          else
+            echo "card_color=228b22" >> $GITHUB_ENV
+          fi
+        shell: bash
 
       - name: Set release date for apply notification
         id: get-date
@@ -78,7 +94,7 @@ jobs:
           webhook: ${{ secrets.TEAMS_WEBHOOK }}
           title: "This is the title"
           message: <p>a <strong>test automation</strong> action has been run on this environment</p>
-          color: 228b22
+          color: ${{ env.card_color }}
           buttons: |
             Workflow log ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           sections: |
