@@ -66,7 +66,7 @@ jobs:
           if-no-files-found: ignore
       
       - name: Set flag on failure
-        if: steps.cytests.outcome == 'failure'
+        if: always() && steps.cytests.outcome == 'failure'
         run: echo "flag=true" >> $GITHUB_ENV
 
       - name: Set notification color
